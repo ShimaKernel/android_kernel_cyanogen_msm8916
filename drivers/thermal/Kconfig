@@ -123,14 +123,23 @@ choice
 	default THERMAL_MONITOR
 
 config THERMAL_MONITOR
-	bool "Monitor thermal state and limit CPU Frequency"
+       bool "Monitor thermal state and limit CPU Frequency"
+       depends on THERMAL_TSENS8960 || THERMAL_TSENS8974
+       depends on CPU_FREQ || CPU_FREQ_MSM
+	help
+	    This enables thermal monitoring capability in the kernel in the absence of a system wide thermal monitoring entity or until such an entity starts running in the userspace. Monitors TSENS temperature and limits the max frequency of the cores.
+
+config FRANCO_MONITOR
+	bool "Simplified Thermal Driver"
 	depends on THERMAL_TSENS8960 || THERMAL_TSENS8974
 	depends on CPU_FREQ || CPU_FREQ_MSM
 	help
 	  This enables thermal monitoring capability in the kernel in the
 	  absence of a system wide thermal monitoring entity or until such an
 	  entity starts running in the userspace. Monitors TSENS temperature
-	  and limits the max frequency of the cores.
+	  and limits the max frequency of the cores based on 4 thresholds of temperature.
+
+endchoice
 
 config INTELLI_THERMAL
 	bool "Better thermal monitor for MSM"
