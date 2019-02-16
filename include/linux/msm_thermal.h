@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012-2015, 2018 The Linux Foundation. All rights reserved.
+ * Copyright (c) 2012-2015, The Linux Foundation. All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -146,7 +146,7 @@ struct device_clnt_data {
 	void                         *usr_data;
 };
 
-#if defined (CONFIG_THERMAL_MONITOR) || defined (CONFIG_INTELLI_THERMAL)
+#ifdef CONFIG_THERMAL_MONITOR
 extern int msm_thermal_init(struct msm_thermal_data *pdata);
 extern int msm_thermal_device_init(void);
 extern int msm_thermal_set_frequency(uint32_t cpu, uint32_t freq,
@@ -249,8 +249,6 @@ extern int devmgr_client_request_mitigation(struct device_clnt_data *clnt,
 extern void devmgr_unregister_mitigation_client(
 					struct device *dev,
 					struct device_clnt_data *clnt);
-extern int msm_thermal_get_cluster_voltage_plan(uint32_t cluster,
-	uint32_t *table_ptr);
 #else
 #ifndef CONFIG_FRANCO_THERMAL
 static inline int msm_thermal_init(struct msm_thermal_data *pdata)
@@ -325,11 +323,14 @@ static inline void devmgr_unregister_mitigation_client(
 					struct device_clnt_data *clnt)
 {
 }
+<<<<<<< HEAD
 static inline int msm_thermal_get_cluster_voltage_plan(uint32_t cluster,
 	uint32_t *table_ptr);
 {
 	return -ENOSYS;
 }
+=======
+>>>>>>> b9e09ee... fix build for franco's thermal
 #endif
 #endif
 

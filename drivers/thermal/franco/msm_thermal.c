@@ -551,7 +551,7 @@ static struct of_device_id msm_thermal_match_table[] = {
 	{},
 };
 
-static struct platform_driver msm_thermal_device_driver = {
+static struct platform_driver msm_thermal_dev_driver = {
 	.probe = msm_thermal_dev_probe,
 	.remove = msm_thermal_dev_remove,
 	.driver = {
@@ -561,7 +561,7 @@ static struct platform_driver msm_thermal_device_driver = {
 	},
 };
 
-static int __init msm_thermal_device_init(void)
+static int __init msm_thermal_late_init(void)
 {
 	#ifdef CONFIG_CORE_CONTROL
 	// Initialize Shoaib's Core Control Driver 
@@ -569,13 +569,13 @@ static int __init msm_thermal_device_init(void)
 	   msm_thermal_add_cc_nodes();
 	#endif
 
-	return platform_driver_register(&msm_thermal_device_driver);
+	return platform_driver_register(&msm_thermal_dev_driver);
 }
 
-static void __exit msm_thermal_device_exit(void)
+static void __exit msm_thermal_dev_exit(void)
 {
-	platform_driver_unregister(&msm_thermal_device_driver);
+	platform_driver_unregister(&msm_thermal_dev_driver);
 }
 
-late_initcall(msm_thermal_device_init);
-module_exit(msm_thermal_device_exit);
+late_initcall(msm_thermal_late_init);
+module_exit(msm_thermal_dev_exit);
