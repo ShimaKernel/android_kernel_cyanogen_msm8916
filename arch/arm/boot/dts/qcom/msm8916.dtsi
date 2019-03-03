@@ -1645,6 +1645,7 @@
 		linux,contiguous-region = <&venus_qseecom_mem>;
 	};
 
+	#ifndef CONFIG_FRANCO_THERMAL
 	qcom,msm-thermal {
 		compatible = "qcom,msm-thermal";
 		qcom,sensor-id = <5>;
@@ -1681,6 +1682,7 @@
 			qcom,freq-req;
 		};
 	};
+	#endif
 
 	qcom,memshare {
 		compatible = "qcom,memshare";
