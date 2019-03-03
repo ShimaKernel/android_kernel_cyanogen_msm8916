@@ -138,16 +138,6 @@ config FRANCO_THERMAL
 
 endchoice
 
-config INTELLI_THERMAL
-	bool "Better thermal monitor for MSM"
-	depends on THERMAL_TSENS8974
-	depends on CPU_FREQ_MSM
-	help
-	  This enables thermal monitoring capability in the kernel replacing
-	  userspace thermal monitoring altogether.
-
-endchoice
-
 config SUPPLY_LM_MONITOR
 	bool "SUPPLY current monitor driver"
 	depends on THERMAL && PM_OPP && CPU_FREQ
